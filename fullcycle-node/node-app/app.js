@@ -11,25 +11,6 @@ const config = {
   database: 'fullcycle_db'
 }
 
-const populateDatabase = () => {  
-
-  const connection = mysql.createConnection(config);
-
-  try{
-
-    [
-      'Leonardo Jorge', 
-      'Wesley Willians'
-    ].forEach(name => connection.query(`insert into people (name) values ('${name}')`));
-
-  }finally{
-    connection.end();
-  }
-
-}
-
-populateDatabase();
-
 app.get('/', (req, res) => {
   const connection = mysql.createConnection(config);
 
