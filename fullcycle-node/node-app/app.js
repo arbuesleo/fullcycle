@@ -11,6 +11,23 @@ const config = {
   database: 'fullcycle_db'
 }
 
+const setupDB = () => {
+
+  const connection = mysql.createConnection(config);
+
+  try{
+    connection.query('CREATE TABLE IF NOT EXISTS people (name varchar(255));');
+    ['Leonardo Arbues', 
+      'Julia Arbues'].forEach(name => connection
+                                      .query(`INSERT INTO people (name) values ('${name}')`));
+  }finally{
+    connection.end();
+  }
+
+}
+
+setupDB();
+
 app.get('/', (req, res) => {
   const connection = mysql.createConnection(config);
 
